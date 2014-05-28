@@ -102,7 +102,7 @@ element1.sendKeys("Doe");
 WebElement element3 = ffdriver.findElement(By.id("but"));
 element3.click();
 System.out.println("Done");*/
-/*-----------------------------------------------------Dropdown combo--------------------------------------------------*/
+/*-----------------------------------------------------Dropdown combo-ttt-------------------------------------------------*/
         WebDriver ffdriver = new FirefoxDriver();
         System.out.println("Launch Firefox..");
         ffdriver.get("http://darom.kharkov.ua/automation/3/combo.html");
