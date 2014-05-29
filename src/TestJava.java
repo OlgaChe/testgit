@@ -103,7 +103,7 @@ WebElement element3 = ffdriver.findElement(By.id("but"));
 element3.click();
 System.out.println("Done");*/
 /*-----------------------------------------------------Dropdown combo-ttt-------------------------------------------------*/
-        WebDriver ffdriver = new FirefoxDriver();
+      /*  WebDriver ffdriver = new FirefoxDriver();
         System.out.println("Launch Firefox..");
         ffdriver.get("http://darom.kharkov.ua/automation/3/combo.html");
         System.out.println("FireFox is opened.");
@@ -112,9 +112,9 @@ System.out.println("Done");*/
         List<WebElement> allOptions = select.findElements(By.tagName("option"));
         for (WebElement i : allOptions) {
             System.out.println(i.getText());
-        }
+        }   */
 /*-----------------------------------------------------GET QUOTES------------------------------------------------------*/
-/*WebDriver ffdriver = new FirefoxDriver();
+WebDriver ffdriver = new FirefoxDriver();
 System.out.println("Launch Firefox..");
 ffdriver.get("http:///devanswers.ru");
 System.out.println("FireFox is opened.");
@@ -125,7 +125,7 @@ quote.click();
 Thread.sleep(3000);
 System.out.println(i + ". "+quote.getText());
  
-}*/
+}
  
  
 /*-----------------------------------------------------Active/Passive--------------------------------------------------*/
