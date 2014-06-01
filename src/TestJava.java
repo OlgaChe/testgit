@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -20,8 +22,98 @@ import java.util.concurrent.TimeUnit;
 public class TestJava {
 
     public static void main(String [] args) throws MalformedURLException, InterruptedException {
- 
- 
+
+        WebDriver ffdriver = new FirefoxDriver();
+        System.out.println("Launch Firefox..");
+        ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
+        System.out.println("FireFox is opened.");
+
+
+
+        ///-------First Check
+        try {
+        ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink")).click();
+        System.out.println("15");
+        Thread.sleep(5000);
+        ffdriver.findElement(By.xpath("//h3[contains(.,'                  Ave Maria')]"));
+
+        System.out.println("Element found");
+        }
+        catch (Exception ex) {
+            System.out.println("Element not found");
+        }
+
+
+        ///-------Second Check
+        try {
+            ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl00_GenreLink")).click();
+            Thread.sleep(5000);
+            ffdriver.findElement(By.xpath("//h3[contains(.,'                  Ave Maria')]"));
+
+                System.out.println("Element found");
+        }
+        catch (Exception ex) {
+                System.out.println("Element not found");
+            }
+
+
+        Actions builder = new Actions(ffdriver);
+
+        builder.dragAndDrop(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_RadListView1_ctrl5_RadListViewItemDragHandle1")), ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).perform();
+
+
+        /*  ///-------Move Element
+       builder.clickAndHold(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_RadListView1_ctrl5_RadListViewItemDragHandle1"))).build().perform();
+        builder.moveToElement(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();
+        builder.click(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();*/
+
+        System.out.println("Move Finished");
+        //ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);//why not working?
+        Thread.sleep(2000);
+
+
+        ///-------Third Check
+        try{
+        ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink")).click();
+        Thread.sleep(10000);
+        ffdriver.findElement(By.xpath("//h3[contains(.,'                  Ave Maria')]"));
+
+        System.out.println("Element found");
+        }
+
+        catch (Exception ex) {
+        System.out.println("Element not found");
+        }
+
+        ///-------Fourth Check
+        try {
+            ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl00_GenreLink")).click();
+            Thread.sleep(5000);
+            ffdriver.findElement(By.xpath("//h3[contains(.,'                  Ave Maria')]"));
+
+            System.out.println("Element found");
+        }
+        catch (Exception ex) {
+            System.out.println("Element not found");
+        }
+
+
+
+
+       /* ///VK drag drop
+        ffdriver.get("http://vk.com/album16175847_0");
+        System.out.println("FireFox is opened.");
+        ffdriver.findElement(By.id("quick_email")).sendKeys("olgache73@gmail.com");
+        ffdriver.findElement(By.id("quick_pass")).sendKeys("K.,jdrf!17");
+        ffdriver.findElement(By.id("quick_login_button")).click();
+        ffdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+
+        builder = new Actions(ffdriver);
+
+        builder.dragAndDrop(ffdriver.findElement(By.id("photo_row16175847_264058981")), ffdriver.findElement(By.id("photo_row16175847_262750767"))).build().perform();
+        System.out.println("aefs");*/
+
 /*-----------------------------------------------------Pop-up window---------------------------------------------------*/
  
 /*WebDriver ffdriver = new FirefoxDriver();
@@ -114,7 +206,7 @@ System.out.println("Done");*/
             System.out.println(i.getText());
         }   */
 /*-----------------------------------------------------GET QUOTES------------------------------------------------------*/
-WebDriver ffdriver = new FirefoxDriver();
+/*WebDriver ffdriver = new FirefoxDriver();
 System.out.println("Launch Firefox..");
 ffdriver.get("http:///devanswers.ru");
 System.out.println("FireFox is opened.");
