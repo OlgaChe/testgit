@@ -29,7 +29,6 @@ public class TestJava {
         System.out.println("FireFox is opened.");
 
 
-
         ///-------First Check
         try {
         ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink")).click();
@@ -57,9 +56,10 @@ public class TestJava {
             }
 
 
+        //Thread.sleep(5000);
         Actions builder = new Actions(ffdriver);
 
-        builder.dragAndDrop(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_RadListView1_ctrl5_RadListViewItemDragHandle1")), ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).perform();
+        builder.dragAndDrop(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_RadListView1_ctrl5_RadListViewItemDragHandle1")), ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();
 
 
         /*  ///-------Move Element
