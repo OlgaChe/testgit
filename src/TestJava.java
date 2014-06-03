@@ -23,7 +23,7 @@ public class TestJava {
 
     public static void main(String [] args) throws MalformedURLException, InterruptedException {
 
-//---------------------------------------DragAndDrop-------------------------------------------/    	
+//---------------------------------------DragAndDroptest-------------------------------------------/
     	WebDriver ffdriver = new FirefoxDriver();
         System.out.println("Launch Firefox..");
         ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
@@ -38,7 +38,7 @@ public class TestJava {
             Thread.sleep(5000);
             ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
                     "                                \n" +
-                    "                                 Ave Maria')]"));
+                    "                                Ave Maria')]"));
 
             System.out.println("Element found");
         }
@@ -53,7 +53,7 @@ public class TestJava {
             Thread.sleep(5000);
             ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
                     "                                \n" +
-                    "                                 Ave Maria')]"));
+                    "                                Ave Maria')]"));
             System.out.println("Element found");
         }
         catch (Exception ex) {
@@ -79,7 +79,7 @@ public class TestJava {
             Thread.sleep(5000);
             ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
                     "                                \n" +
-                    "                                 Ave Maria')]"));
+                    "                                Ave Maria')]"));
 
             System.out.println("Element found");
         }
@@ -94,7 +94,7 @@ public class TestJava {
             Thread.sleep(5000);
             ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
                     "                                \n" +
-                    "                                 Ave Maria')]"));
+                    "                                Ave Maria')]"));
 
             System.out.println("Element found");
         }
