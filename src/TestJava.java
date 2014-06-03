@@ -29,8 +29,6 @@ public class TestJava {
         ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
         System.out.println("FireFox is opened.");
 
-
-
         ///-------First Check
         try {
             ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink")).click();
