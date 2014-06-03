@@ -23,7 +23,7 @@ public class TestJava {
 
     public static void main(String [] args) throws MalformedURLException, InterruptedException {
 
-//----------------------------------------------------------------------------------/    	
+//---------------------------------------DragAndDrop-------------------------------------------/    	
     	WebDriver ffdriver = new FirefoxDriver();
         System.out.println("Launch Firefox..");
         ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
