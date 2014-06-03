@@ -23,8 +23,38 @@ public class TestJava {
 
     public static void main(String [] args) throws MalformedURLException, InterruptedException {
 
+        WebDriver ffdriver = new FirefoxDriver();
+        System.out.println("Launch Firefox..");
+        ffdriver.get("http://demos.telerik.com/aspnet-ajax/carrental/");
+        System.out.println("FireFox is opened.");
+
+        List<WebElement> list = ffdriver.findElements(By.cssSelector("img[id]"));
+        for (WebElement i : list){
+            i.click();
+            Thread.sleep(2000);
+            System.out.println(ffdriver.findElement(By.cssSelector("em")).getText());
+
+            try {
+                //ffdriver.findElement(By.xpath("//li[contains(.,'DVD Player:No')]"));
+                //WebElement ifr = ffdriver.findElement(By.cssSelector("iframe"));
+                //ifr.findElement(By.xpath("//li[contains(.,'DVD Player:No')]"));
+                //ifr.findElement(By.xpath(".//*[@id='fvDetails_description']/ul/li[2]/span"));
+                System.out.println("yes");
+            }
+            catch (NoSuchElementException e) {
+                System.out.println("no");
+            }
+
+            Thread.sleep(4000);
+            ffdriver.findElement(By.className("rwCloseButton")).click();
+
+        }
+
+        System.out.println(list.size());
+
+
 //---------------------------------------DragAndDroptest-------------------------------------------/
-    	WebDriver ffdriver = new FirefoxDriver();
+    /*	WebDriver ffdriver = new FirefoxDriver();
         System.out.println("Launch Firefox..");
         ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
         System.out.println("FireFox is opened.");
@@ -98,7 +128,7 @@ public class TestJava {
         }
         catch (Exception ex) {
             System.out.println("Element not found");
-        }
+        }*/
     	/*WebDriver ffdriver = new FirefoxDriver();
         System.out.println("Launch Firefox..");
         ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
