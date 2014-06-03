@@ -23,7 +23,85 @@ public class TestJava {
 
     public static void main(String [] args) throws MalformedURLException, InterruptedException {
 
-        WebDriver ffdriver = new FirefoxDriver();
+//----------------------------------------------------------------------------------/    	
+    	WebDriver ffdriver = new FirefoxDriver();
+        System.out.println("Launch Firefox..");
+        ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
+        System.out.println("FireFox is opened.");
+
+
+
+        ///-------First Check
+        try {
+            ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink")).click();
+            System.out.println("15");
+            Thread.sleep(5000);
+            ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
+                    "                                \n" +
+                    "                                 Ave Maria')]"));
+
+            System.out.println("Element found");
+        }
+        catch (Exception ex) {
+            System.out.println("Element not found");
+        }
+
+
+        ///-------Second Check
+        try {
+            ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl00_GenreLink")).click();
+            Thread.sleep(5000);
+            ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
+                    "                                \n" +
+                    "                                 Ave Maria')]"));
+            System.out.println("Element found");
+        }
+        catch (Exception ex) {
+            System.out.println("Element not found");
+        }
+
+
+        Thread.sleep(5000);
+        Actions builder = new Actions(ffdriver);
+
+        builder.dragAndDrop(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_RadListView1_ctrl5_RadListViewItemDragHandle1")), ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();
+        System.out.println("Move Finished");
+
+        //ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
+       Thread.sleep(3000);
+
+
+
+        ///-------Third Check
+        try{
+            ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink")).click();
+            Thread.sleep(5000);
+            ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
+                    "                                \n" +
+                    "                                 Ave Maria')]"));
+
+            System.out.println("Element found");
+        }
+
+        catch (Exception ex) {
+            System.out.println("Element not found");
+        }
+
+        ///-------Fourth Check
+        try {
+            ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl00_GenreLink")).click();
+            Thread.sleep(5000);
+            ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
+                    "                                \n" +
+                    "                                 Ave Maria')]"));
+
+            System.out.println("Element found");
+        }
+        catch (Exception ex) {
+            System.out.println("Element not found");
+        }
+    	/*WebDriver ffdriver = new FirefoxDriver();
         System.out.println("Launch Firefox..");
         ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
         System.out.println("FireFox is opened.");
@@ -62,10 +140,10 @@ public class TestJava {
         builder.dragAndDrop(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_RadListView1_ctrl5_RadListViewItemDragHandle1")), ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();
 
 
-        /*  ///-------Move Element
+          ///-------Move Element
        builder.clickAndHold(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_RadListView1_ctrl5_RadListViewItemDragHandle1"))).build().perform();
         builder.moveToElement(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();
-        builder.click(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();*/
+        builder.click(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();
 
         System.out.println("Move Finished");
         //ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);//why not working?
@@ -96,23 +174,11 @@ public class TestJava {
         catch (Exception ex) {
             System.out.println("Element not found");
         }
+*/
 
 
 
-
-       /* ///VK drag drop
-        ffdriver.get("http://vk.com/album16175847_0");
-        System.out.println("FireFox is opened.");
-        ffdriver.findElement(By.id("quick_email")).sendKeys("olgache73@gmail.com");
-        ffdriver.findElement(By.id("quick_pass")).sendKeys("K.,jdrf!17");
-        ffdriver.findElement(By.id("quick_login_button")).click();
-        ffdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
-
-        builder = new Actions(ffdriver);
-
-        builder.dragAndDrop(ffdriver.findElement(By.id("photo_row16175847_264058981")), ffdriver.findElement(By.id("photo_row16175847_262750767"))).build().perform();
-        System.out.println("aefs");*/
+       
 
 /*-----------------------------------------------------Pop-up window---------------------------------------------------*/
  
