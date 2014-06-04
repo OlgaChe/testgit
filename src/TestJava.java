@@ -16,20 +16,120 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TestJava {
 
-    public static void main(String [] args) throws MalformedURLException, InterruptedException {
+ /*   ArrayList<TestJava> cars = new ArrayList<TestJava>();
+    static String name;
+    static String dvd;
+
+    public String getDvd() {
+        return dvd;
+    }
+
+    public void setDvd(String dvd) {
+        this.dvd = dvd;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public TestJava(String name, String dvd) {
+        setName(name);
+        setDvd(dvd);
+    }
+
+    public void test() throws InterruptedException {
+        TestJava mass = new TestJava(name, dvd);
+        WebDriver ffdriver = new FirefoxDriver();
+        System.out.println("Launch Firefox..");
+        ffdriver.get("http://demos.telerik.com/aspnet-ajax/carrental/");
+        System.out.println("FireFox is opened.");
+
+        List<WebElement> list = ffdriver.findElements(By.cssSelector("img[id]"));
+        for (WebElement i : list){
+            i.click();
+            Thread.sleep(2000);
+            WebElement namec =  ffdriver.findElement(By.cssSelector("em"));
+            name = namec.getText();
+            System.out.println(name);
+            ffdriver.switchTo().frame( "rwVehicleFleet" );
+            // WebElement dvd = ffdriver.findElement(By.xpath("./*//*[@id='fvDetails_description']/ul/li[2]/span"));
+            WebElement dvdc = ffdriver.findElement(By.cssSelector("div [id='fvDetails_description'] ul li:nth-child(2) span"));
+            dvd = dvdc.getText();
+            System.out.println(dvdc.getText());
+            ffdriver.switchTo().defaultContent();
+            Thread.sleep(2000);
+            ffdriver.findElement(By.className("rwCloseButton")).click();
+            mass.setName(name);
+            mass.setDvd(dvd);
+            mass.cars.add(this);
+
+        }
+
+        System.out.println(list.size());
+    }
+
+        public void out() {
+        for (TestJava j:cars) {
+            System.out.println(j.getName() + " " + j.getDvd());
+        }
+    }*/
+
+   // }
+
+    static public void main(String[] args) throws MalformedURLException, InterruptedException {
+        /*String name = null;
+        String dvd = null;
+        TestJava test = new TestJava(name, dvd);
+        test.test();
+        test.out();*/
+        int j = 0;
+
+        WebDriver ffdriver = new FirefoxDriver();
+        System.out.println("Launch Firefox..");
+        ffdriver.get("http://demos.telerik.com/aspnet-ajax/carrental/");
+        System.out.println("FireFox is opened.");
+
+        List<WebElement> list = ffdriver.findElements(By.cssSelector("img[id]"));
+        for (WebElement i : list){
+            i.click();
+            ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+            WebElement namec =  ffdriver.findElement(By.cssSelector("em"));
+            String name = namec.getText();
+
+            ffdriver.switchTo().frame( "rwVehicleFleet" );
+           // WebElement dvd = ffdriver.findElement(By.xpath("./*//*[@id='fvDetails_description']/ul/li[2]/span"));
+            WebElement dvdc = ffdriver.findElement(By.cssSelector("div [id='fvDetails_description'] ul li:nth-child(2) span"));
+            String dvd = dvdc.getText();
+
+            ffdriver.switchTo().defaultContent();
+            ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS) ;
+            ffdriver.findElement(By.className("rwCloseButton")).click();
+            if (dvd.equals("Yes"))
+                j = j + 1;
+            System.out.println(name + "  " + dvd);
+
+        }
+        System.out.println("Total number of cars with dvd: " + j);
+
+
+
+
 
 //---------------------------------------DragAndDroptest-------------------------------------------/
-    	WebDriver ffdriver = new FirefoxDriver();
+    /*	WebDriver ffdriver = new FirefoxDriver();
         System.out.println("Launch Firefox..");
         ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
         System.out.println("FireFox is opened.");
-
-
 
         ///-------First Check
         try {
@@ -100,7 +200,7 @@ public class TestJava {
         }
         catch (Exception ex) {
             System.out.println("Element not found");
-        }
+        }*/
     	/*WebDriver ffdriver = new FirefoxDriver();
         System.out.println("Launch Firefox..");
         ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
