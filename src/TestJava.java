@@ -99,7 +99,7 @@ public class TestJava {
         ffdriver.get("http://demos.telerik.com/aspnet-ajax/carrental/");
         System.out.println("FireFox is opened.");
 
-        List<WebElement> list = ffdriver.findElements(By.cssSelector("img[id]"));
+        List<WebElement> list = ffdriver.findElements(By.cssSelector(".rlvI a"));
         for (WebElement i : list){
             i.click();
             ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
