@@ -1,97 +1,15 @@
-import com.gargoylesoftware.htmlunit.BrowserVersion;
-import org.apache.xpath.SourceTree;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TestJava {
 
- /*   ArrayList<TestJava> cars = new ArrayList<TestJava>();
-    static String name;
-    static String dvd;
+    static public void main(String[] args) throws  InterruptedException {
 
-    public String getDvd() {
-        return dvd;
-    }
-
-    public void setDvd(String dvd) {
-        this.dvd = dvd;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public TestJava(String name, String dvd) {
-        setName(name);
-        setDvd(dvd);
-    }
-
-    public void test() throws InterruptedException {
-        TestJava mass = new TestJava(name, dvd);
-        WebDriver ffdriver = new FirefoxDriver();
-        System.out.println("Launch Firefox..");
-        ffdriver.get("http://demos.telerik.com/aspnet-ajax/carrental/");
-        System.out.println("FireFox is opened.");
-
-        List<WebElement> list = ffdriver.findElements(By.cssSelector("img[id]"));
-        for (WebElement i : list){
-            i.click();
-            Thread.sleep(2000);
-            WebElement namec =  ffdriver.findElement(By.cssSelector("em"));
-            name = namec.getText();
-            System.out.println(name);
-            ffdriver.switchTo().frame( "rwVehicleFleet" );
-            // WebElement dvd = ffdriver.findElement(By.xpath("./*//*[@id='fvDetails_description']/ul/li[2]/span"));
-            WebElement dvdc = ffdriver.findElement(By.cssSelector("div [id='fvDetails_description'] ul li:nth-child(2) span"));
-            dvd = dvdc.getText();
-            System.out.println(dvdc.getText());
-            ffdriver.switchTo().defaultContent();
-            Thread.sleep(2000);
-            ffdriver.findElement(By.className("rwCloseButton")).click();
-            mass.setName(name);
-            mass.setDvd(dvd);
-            mass.cars.add(this);
-
-        }
-
-        System.out.println(list.size());
-    }
-
-        public void out() {
-        for (TestJava j:cars) {
-            System.out.println(j.getName() + " " + j.getDvd());
-        }
-    }*/
-
-   // }
-
-    static public void main(String[] args) throws MalformedURLException, InterruptedException {
-        /*String name = null;
-        String dvd = null;
-        TestJava test = new TestJava(name, dvd);
-        test.test();
-        test.out();*/
+        ArrayList<String> cars = new ArrayList<String>();
         int j = 0;
 
         WebDriver ffdriver = new FirefoxDriver();
@@ -99,27 +17,42 @@ public class TestJava {
         ffdriver.get("http://demos.telerik.com/aspnet-ajax/carrental/");
         System.out.println("FireFox is opened.");
 
-        List<WebElement> list = ffdriver.findElements(By.cssSelector("img[id]"));
+        List<WebElement> list = ffdriver.findElements(By.cssSelector(".rlvI a"));
+
         for (WebElement i : list){
             i.click();
             ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-            WebElement namec =  ffdriver.findElement(By.cssSelector("em"));
-            String name = namec.getText();
 
             ffdriver.switchTo().frame( "rwVehicleFleet" );
-           // WebElement dvd = ffdriver.findElement(By.xpath("./*//*[@id='fvDetails_description']/ul/li[2]/span"));
-            WebElement dvdc = ffdriver.findElement(By.cssSelector("div [id='fvDetails_description'] ul li:nth-child(2) span"));
-            String dvd = dvdc.getText();
+
+           String name =  ffdriver.findElement(By.id("makeModel")).getText();
+           String dvd = ffdriver.findElement(By.cssSelector("div [id='fvDetails_description'] ul li:nth-child(2) span")).getText();
 
             ffdriver.switchTo().defaultContent();
             ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS) ;
             ffdriver.findElement(By.className("rwCloseButton")).click();
+
+           // System.out.println(name + "  " + dvd);
+
+            ///Add to array
+            cars.add(name + " " + dvd);
+
+            ///Count dvd
             if (dvd.equals("Yes"))
                 j = j + 1;
-            System.out.println(name + "  " + dvd);
 
         }
+
+        ///Output array
+        System.out.println("Car name          DVD") ;
+        System.out.println("------------------------------------");
+        for (String i : cars){
+            System.out.println(i);
+        }
+
+        System.out.println("------------------------------------");
         System.out.println("Total number of cars with dvd: " + j);
+
 
 
 
@@ -512,4 +445,6 @@ driver.get("http://ya.ru");*/
 
 
     }
+
+
 }
