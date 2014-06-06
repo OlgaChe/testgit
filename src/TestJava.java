@@ -1,29 +1,140 @@
-import com.gargoylesoftware.htmlunit.BrowserVersion;
-import org.apache.xpath.SourceTree;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TestJava {
 
-    public static void main(String [] args) throws MalformedURLException, InterruptedException {
+    static public void main(String[] args) throws  InterruptedException {
+
+        ArrayList<String> cars = new ArrayList<String>();
+        int j = 0;
 
         WebDriver ffdriver = new FirefoxDriver();
+        System.out.println("Launch Firefox..");
+        ffdriver.get("http://demos.telerik.com/aspnet-ajax/carrental/");
+        System.out.println("FireFox is opened.");
+
+        List<WebElement> list = ffdriver.findElements(By.cssSelector(".rlvI a"));
+
+        for (WebElement i : list){
+            i.click();
+            ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
+            ffdriver.switchTo().frame( "rwVehicleFleet" );
+
+           String name =  ffdriver.findElement(By.id("makeModel")).getText();
+           String dvd = ffdriver.findElement(By.cssSelector("div [id='fvDetails_description'] ul li:nth-child(2) span")).getText();
+
+            ffdriver.switchTo().defaultContent();
+            ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS) ;
+            ffdriver.findElement(By.className("rwCloseButton")).click();
+
+           // System.out.println(name + "  " + dvd);
+
+            ///Add to array
+            cars.add(name + " " + dvd);
+
+            ///Count dvd
+            if (dvd.equals("Yes"))
+                j = j + 1;
+
+        }
+
+        ///Output array
+        System.out.println("Car name          DVD") ;
+        System.out.println("------------------------------------");
+        for (String i : cars){
+            System.out.println(i);
+        }
+
+        System.out.println("------------------------------------");
+        System.out.println("Total number of cars with dvd: " + j);
+
+
+
+
+
+
+//---------------------------------------DragAndDroptest-------------------------------------------/
+    /*	WebDriver ffdriver = new FirefoxDriver();
+        System.out.println("Launch Firefox..");
+        ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
+        System.out.println("FireFox is opened.");
+
+        ///-------First Check
+        try {
+            ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink")).click();
+            System.out.println("15");
+            Thread.sleep(5000);
+            ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
+                    "                                \n" +
+                    "                                Ave Maria')]"));
+
+            System.out.println("Element found");
+        }
+        catch (Exception ex) {
+            System.out.println("Element not found");
+        }
+
+
+        ///-------Second Check
+        try {
+            ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl00_GenreLink")).click();
+            Thread.sleep(5000);
+            ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
+                    "                                \n" +
+                    "                                Ave Maria')]"));
+            System.out.println("Element found");
+        }
+        catch (Exception ex) {
+            System.out.println("Element not found");
+        }
+
+
+        Thread.sleep(5000);
+        Actions builder = new Actions(ffdriver);
+
+        builder.dragAndDrop(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_RadListView1_ctrl5_RadListViewItemDragHandle1")), ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();
+        System.out.println("Move Finished");
+
+        //ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
+       Thread.sleep(3000);
+
+
+
+        ///-------Third Check
+        try{
+            ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink")).click();
+            Thread.sleep(5000);
+            ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
+                    "                                \n" +
+                    "                                Ave Maria')]"));
+
+            System.out.println("Element found");
+        }
+
+        catch (Exception ex) {
+            System.out.println("Element not found");
+        }
+
+        ///-------Fourth Check
+        try {
+            ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl00_GenreLink")).click();
+            Thread.sleep(5000);
+            ffdriver.findElement(By.xpath("//h3[contains(.,'\n" +
+                    "                                \n" +
+                    "                                Ave Maria')]"));
+
+            System.out.println("Element found");
+        }
+        catch (Exception ex) {
+            System.out.println("Element not found");
+        }*/
+    	/*WebDriver ffdriver = new FirefoxDriver();
         System.out.println("Launch Firefox..");
         ffdriver.get("http://demos.telerik.com/aspnet-ajax/listview/examples/itemdragdrop/defaultcs.aspx");
         System.out.println("FireFox is opened.");
@@ -62,10 +173,10 @@ public class TestJava {
         builder.dragAndDrop(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_RadListView1_ctrl5_RadListViewItemDragHandle1")), ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();
 
 
-        /*  ///-------Move Element
+          ///-------Move Element
        builder.clickAndHold(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_RadListView1_ctrl5_RadListViewItemDragHandle1"))).build().perform();
         builder.moveToElement(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();
-        builder.click(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();*/
+        builder.click(ffdriver.findElement(By.id("ctl00_ContentPlaceHolder1_GenresRepeater_ctl01_GenreLink"))).build().perform();
 
         System.out.println("Move Finished");
         //ffdriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);//why not working?
@@ -96,23 +207,11 @@ public class TestJava {
         catch (Exception ex) {
             System.out.println("Element not found");
         }
+*/
 
 
 
-
-       /* ///VK drag drop
-        ffdriver.get("http://vk.com/album16175847_0");
-        System.out.println("FireFox is opened.");
-        ffdriver.findElement(By.id("quick_email")).sendKeys("olgache73@gmail.com");
-        ffdriver.findElement(By.id("quick_pass")).sendKeys("K.,jdrf!17");
-        ffdriver.findElement(By.id("quick_login_button")).click();
-        ffdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
-
-        builder = new Actions(ffdriver);
-
-        builder.dragAndDrop(ffdriver.findElement(By.id("photo_row16175847_264058981")), ffdriver.findElement(By.id("photo_row16175847_262750767"))).build().perform();
-        System.out.println("aefs");*/
+       
 
 /*-----------------------------------------------------Pop-up window---------------------------------------------------*/
  
@@ -346,4 +445,9 @@ driver.get("http://ya.ru");*/
 
 
     }
+
+
 }
+
+
+

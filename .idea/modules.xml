@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/SeleniumIDEA.iml" filepath="$PROJECT_DIR$/SeleniumIDEA.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/testgit.iml" filepath="$PROJECT_DIR$/testgit.iml" />
+>>>>>>> 0f74f42da22c7675bd1dfe8fc19f57d7711a4901
     </modules>
   </component>
 </project>
